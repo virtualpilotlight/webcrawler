@@ -1,6 +1,6 @@
 import sys
 
-from get_html import get_html
+from crawl import crawl_page
 
 
 def main():
@@ -15,12 +15,14 @@ def main():
     print(f"starting crawl of: {base_url}")
 
     try:
-        html = get_html(base_url)
+        page_data = crawl_page(base_url)
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
 
-    print(html)
+    print(f"\nCrawl complete: found {len(page_data)} pages\n")
+    for page in page_data.values():
+        print(page)
 
 
 if __name__ == "__main__":
